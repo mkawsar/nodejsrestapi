@@ -8,7 +8,6 @@ var cors=require('cors');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var Tasks=require('./routes/Task');
-var Students=require('./routes/Students');
 var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -29,7 +28,6 @@ So now, you can use http://localhost:5000/resources/myImage.jpg to serve all the
 app.use('/', routes);
 app.use('/users', users);
 app.use('/Tasks',Tasks);
-app.use('/Students',Students);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

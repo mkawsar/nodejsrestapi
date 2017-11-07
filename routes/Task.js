@@ -23,8 +23,9 @@ router.get('/:id?', function(req, res, next) {
     }
 });
 
-router.post('/', function(res, req, next) {
-    Task.addTask(req.body, function(err, count) {
+router.post('/',function(req, res, next){
+    Task.addTask(req.body,function(err,count){
+        /*console.log(req.body);*/
         if(err) {
             res.json(err);
         } else {
@@ -33,7 +34,7 @@ router.post('/', function(res, req, next) {
     });
 });
 
-router.post('/:id', function(res, req, next) {
+router.post('/:id', function(req, res, next) {
     Task.deleteAll(req.body, function(err, count) {
         if(err) {
             res.json(err);
@@ -43,7 +44,8 @@ router.post('/:id', function(res, req, next) {
     });
 });
 
-router.delete('/:id', function(res, req, next) {
+router.delete('/:id', function(req, res, next) {
+    /*console.log(req.params.id);*/
     Task.deleteTask(req.params.id, function(err, count) {
         if(err) {
             res.json(err);
@@ -53,7 +55,7 @@ router.delete('/:id', function(res, req, next) {
     });
 });
 
-router.put('/:id', function(res, req, next) {
+router.put('/:id', function(req, res, next) {
     Task.updateTask(req.params.id, req.body, function(err, rows) {
         if(err) {
             res.json(err);
