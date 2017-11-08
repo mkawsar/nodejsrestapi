@@ -4,7 +4,7 @@ var Task = {
         return db.query("SELECT * FROM task", callback);
     },
     getTaskById:function (id, callback) {
-        return db.query("select * from task where Id=?",[id], callback);
+        return db.query("select * from task where Id=?",[id], callback, "limit 1");
     },
     addTask:function(Task, callback) {
         return db.query("insert into task values(?,?,?)",[Task.Id, Task.Title, Task.Status], callback);

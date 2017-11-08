@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Task=require('../models/Task');
-
+var Task = require('../models/Task');
 
 router.get('/:id?', function(req, res, next) {
     if(req.params.id) {
@@ -9,7 +8,9 @@ router.get('/:id?', function(req, res, next) {
             if(err) {
                 res.json(err);
             } else {
-                res.json(rows);
+                /*res.json(rows);*/
+                console.log(rows);
+                res.render('tasks/editTask', { title: 'Update Task', task: rows, menu: 'TaskList' });
             }
         });
     } else {
@@ -17,7 +18,7 @@ router.get('/:id?', function(req, res, next) {
             if (err) {
                 res.json(err);
             } else {
-                res.render('taskList', { title: 'All Tasks', results: rows, menu: 'TaskList'});
+                res.render('tasks/taskList', { title: 'All Tasks', results: rows, menu: 'TaskList' });
             }
         });
     }
@@ -34,7 +35,7 @@ router.post('/',function(req, res, next){
     });
 });
 
-router.post('/:id', function(req, res, next) {
+/*router.post('/:id', function(req, res, next) {
     Task.deleteAll(req.body, function(err, count) {
         if(err) {
             res.json(err);
@@ -42,7 +43,7 @@ router.post('/:id', function(req, res, next) {
             res.json(count);
         }
     });
-});
+});*/
 
 router.delete('/:id', function(req, res, next) {
     /*console.log(req.params.id);*/
@@ -55,12 +56,12 @@ router.delete('/:id', function(req, res, next) {
     });
 });
 
-router.put('/:id', function(req, res, next) {
+router.post('/update/:id', function(req, res, next) {
     Task.updateTask(req.params.id, req.body, function(err, rows) {
         if(err) {
-            res.json(err);
+            res.redirect('/Tasks');
         } else {
-            res.json(rows);
+            res.redirect('/Tasks');
         }
     });
 });

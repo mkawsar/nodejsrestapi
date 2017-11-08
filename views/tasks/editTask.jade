@@ -1,0 +1,23 @@
+extends ../layout
+
+block content
+    .row
+        .col-lg-12
+            h1.page-header Task Update
+
+    .row
+        .col-lg-12
+            .panel.penel-default
+                .panel-body
+                    form.form-horizontal(role='form', method='POST', action='/Tasks/update/#{task[0].Id}')
+                        //input(name='_method', type='hidden', value='PUT')
+                        input(type='hidden', name='Id', value="#{task[0].Id}")
+                        .form-group
+                            label Title
+                            input.form-control(type='text', name='Title', placeholder='Title', value="#{task[0].Title}")
+                            p.help-block Example block-level help text here.
+                        .form-group
+                            label Status
+                            input.form-control(type='text', name='Status', placeholder='Status', value="#{task[0].Status}")
+
+                        button.btn.btn-default(type='submit') Submit Button
