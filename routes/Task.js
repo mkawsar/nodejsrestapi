@@ -17,7 +17,7 @@ router.get('/:id?', function(req, res, next) {
             if (err) {
                 res.json(err);
             } else {
-                res.render('index', { title: 'All Tasks', results: rows});
+                res.render('taskList', { title: 'All Tasks', results: rows, menu: 'TaskList'});
             }
         });
     }
