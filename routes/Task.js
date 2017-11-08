@@ -13,11 +13,11 @@ router.get('/:id?', function(req, res, next) {
             }
         });
     } else {
-        Task.getAllTask(function(err, rows) {
-            if(err) {
+        Task.getAllTask(function (err, rows) {
+            if (err) {
                 res.json(err);
             } else {
-                res.json(rows)
+                res.render('index', { title: 'All Tasks', results: rows});
             }
         });
     }
